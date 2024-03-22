@@ -47,11 +47,7 @@ def text_to_pdf(text, filename):
 
     return PDFbyte
 
-
-
-
-
-    
+   
 
 st.markdown("<h1 style='text-align: center; color: black;'>Blood Report Analyzer</h1>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center; color: grey;'>Reports, Simplified! </h3>", unsafe_allow_html=True)
