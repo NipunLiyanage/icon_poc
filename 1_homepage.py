@@ -94,6 +94,7 @@ if button:
         pdf_file = text_to_pdf(response.text, 'summarized result.pdf')
 
         st.divider()
+        st.markdown(':red[**The report will dissapear from the screen when you click download.**]')
 
         st.download_button(
             label="Download",
