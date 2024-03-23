@@ -26,7 +26,7 @@ def text_to_pdf(text, filename):
     pdf = FPDF(orientation='P', unit='mm', format='A4')
     pdf.set_auto_page_break(True, margin=margin_bottom_mm)
     pdf.add_page()
-    pdf.set_font(family='Arial', size=fontsize_pt)
+    pdf.set_font(family='Courier', size=fontsize_pt)
     splitted = text.split('\n')
 
     for line in splitted:
