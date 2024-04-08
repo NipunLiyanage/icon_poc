@@ -87,12 +87,9 @@ if button:
             instructions = "No additional instructions provided"
 
         # response = model.generate_content(img)
-        response = model.generate_content([f" This is a image of a COMPLETE BLOOD COUNT (CBC) it's a one of the most important blood tests that your doctor will order is a complete blood count (CBC), an inventory of different types of blood cells.\
-                                             These can be grouped into three categories: red blood cells, white blood cells and platelets. Knowing how many of these cells are in a blood sample provides a lot of valuable information.\
-                                             Go through each value and describe them like a docter describing it to a patient.\
-                                             Use the reference range from the image only. \
-                                             Imagine this is my blood report and you are a doctor but do not make the response like a letter but a report.\
-                                             Any additional instructions to be followed are given here delimited by three forward slashes. ///{instructions}///"
+        response = model.generate_content([f"This is a image of a blood report. *Only consider it to read test results and references*\
+                                            Pretend you are a doctor, describe the abnormalities to a patient in laymen terms.\
+                                            Provide a short list like answer. Aditional instructions to follow: {instructions}"
                                              , img], stream=True)
         
         response.resolve()
