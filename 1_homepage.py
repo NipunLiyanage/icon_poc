@@ -67,7 +67,7 @@ with col2:
 
 
     file = st.file_uploader(":green[**Select your Blood Report (JPG or PNG)**]", type=['png', 'jpg'], accept_multiple_files=False, key="Uploaded", help=None, on_change=None, args=None, kwargs=None,disabled=False, label_visibility="visible")
-    instructions = st.text_area('Additional Instructions',  key='addInstructions', placeholder='',label_visibility="visible")
+    instructions = st.text_area('Additional Instructions',  key='addInstructions', placeholder='',label_visibility="visible", help = "Please add here if there are any specific instructions you want the app to follow when generating the report.")
 
     disabledButton = False
     if file == None:
