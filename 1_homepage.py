@@ -67,6 +67,7 @@ with col2:
 
 
     file = st.file_uploader(":green[**Select your Blood Report (JPG or PNG)**]", type=['png', 'jpg'], accept_multiple_files=False, key="Uploaded", help=None, on_change=None, args=None, kwargs=None,disabled=False, label_visibility="visible")
+    instructions = st.text_area('Additional Instructions',  key='addInstructions', placeholder='',label_visibility="visible")
 
     disabledButton = False
     if file == None:
@@ -82,11 +83,18 @@ if button:
     if file is not None:
         img = PIL.Image.open(file)
 
+        if instructions == None:
+            instructions = "No additional instructions provided"
+
         # response = model.generate_content(img)
-        response = model.generate_content(["""
-                        This is a image of a COMPLETE BLOOD COUNT (CBC) it's a one of the most important blood tests that your doctor will order is a complete blood count (CBC), an inventory of different types of blood cells. These can be grouped into three categories: red blood cells, white blood cells and platelets. Knowing how many of these cells are in a blood sample provides a lot of valuable information.
-                        Go through each value and describe them like a docter describing it to a patient. Use the reference range from the image only. Imagine this is my blood report and you are a doctor but do not make the response like a letter but a report:
-                        """, img], stream=True)
+        response = model.generate_content([f" This is a image of a COMPLETE BLOOD COUNT (CBC) it's a one of the most important blood tests that your doctor will order is a complete blood count (CBC), an inventory of different types of blood cells.\
+                                             These can be grouped into three categories: red blood cells, white blood cells and platelets. Knowing how many of these cells are in a blood sample provides a lot of valuable information.\
+                                             Go through each value and describe them like a docter describing it to a patient.\
+                                             Use the reference range from the image only. \
+                                             Imagine this is my blood report and you are a doctor but do not make the response like a letter but a report.\
+                                             Any additional instructions to be followed are given here delimited by three forward slashes. ///{instructions}///"
+                                             , img], stream=True)
+        
         response.resolve()
 
         st.write(response.text)
